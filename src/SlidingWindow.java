@@ -31,5 +31,27 @@ public class SlidingWindow {
         }
         return minSum;
     }
+    public static int maxCounts(int[] arr){
+        int k = 3 ;
+        int count = 0;
+        //first window 
+        for (int i = 0; i < k; i++) {
+            if (arr[i]==1){
+                count++;
+            }
+        }
+        //now sliding window part 
+        int maxCount = count;
+        for (int i = k; i < arr.length; i++) {
+            if (arr[i-k]==1){
+                count--;
+            }
+            if (arr[i]==1){
+                count++;
+            }
+            maxCount = Math.max(maxCount,count);
+        }
+        return count;
+    }
 
 }
