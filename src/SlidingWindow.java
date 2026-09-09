@@ -144,4 +144,23 @@ public class SlidingWindow {
         }
         return  maxCount;
     }
+                                //VARIABLE SIZE SLIDING WINDOW
+        //Q->Find the minimum length of a contiguous subarray whose sum is >= 7.
+    public static int minLen(int [] arr,int target){
+        int left = 0 ;
+        int sum = 0;
+        int minlength =Integer.MAX_VALUE;
+        // first find the length
+        for (int right = 0;right< arr.length;right++){
+            sum = sum + arr[right]; //current element to sum me add kiya
+
+            while (sum >= target){
+                int length = sum -left+right;//current window ki length nikali
+                minlength=Math.min(minlength,length);//minimum length find kiya
+                sum = sum - left;//left element ko remove kiya
+                left++;
+            }
+        }
+        return minlength;
+    }
 }
