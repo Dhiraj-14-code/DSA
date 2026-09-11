@@ -163,4 +163,47 @@ public class SlidingWindow {
         }
         return minlength;
     }
+    //Q: Maximum number of 1s in a contiguous subarray of size k
+    public static int maxCountOfOne(int[] arr){
+        int k = 4 ;
+        int count = 0 ;
+        //first window count
+        for (int i = 0; i < k; i++) {
+            if(arr[i] == 1 ){
+                count++;
+            }
+        }
+        int maxCountOne = count;
+        for (int i = k; i < arr.length ; i++) {
+            if (arr[i-k]==1){
+                count--;
+            }
+            if (arr[i]==1){
+                count++;
+            }
+            maxCountOne = Math.max(maxCountOne,count);
+        }
+        return maxCountOne;
+    }
+    //Find the minimum length of a contiguous subarray whose sum is >= 8.
+    public static int minLength2(int[] arr,int target){
+        int left = 0;
+        int sum = 0 ;
+        int minLength =Integer.MAX_VALUE;
+
+        //calculate or add elemnt into sum
+         for(int right = 0;right< arr.length;right++){
+             sum=sum+arr[right];
+
+             while(sum >= target){
+                 int length= right-left+1;
+                 minLength=Math.min(minLength,length);
+                 sum=sum - arr[left];
+                 left++;
+             }
+         }
+         return minLength;
+
+
+    }
 }
